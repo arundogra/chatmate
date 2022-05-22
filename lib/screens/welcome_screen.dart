@@ -1,6 +1,7 @@
 import 'package:chatmate/screens/login_screen.dart';
 import 'package:chatmate/screens/registration_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:animated_text_kit/animated_text_kit.dart';
 
 class WelcomeScreen extends StatefulWidget {
 
@@ -60,12 +61,11 @@ class _WelcomeScreenState extends State<WelcomeScreen> with SingleTickerProvider
                     height: 60.0,
                   ),
                 ),
-                Text(
-                  'ChatMate',
-                  style: TextStyle(
-                    fontSize: 45.0,
-                    color: Colors.blueGrey,
-                    fontWeight: FontWeight.w900,
+                DefaultTextStyle(
+                    style: const TextStyle(fontSize: 40,color: Colors.blueGrey),
+                    child: AnimatedTextKit(
+                      animatedTexts: [WavyAnimatedText('ChatMate')],
+                      isRepeatingAnimation: true,
                   ),
                 ),
               ],
