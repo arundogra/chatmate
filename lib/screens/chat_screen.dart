@@ -3,7 +3,6 @@ import '/constants.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-
 class ChatScreen extends StatefulWidget {
 
   static String id = 'chat_screen';
@@ -24,6 +23,27 @@ class _ChatScreenState extends State<ChatScreen> {
   void initState() {
     super.initState();
     getCurrentUser();
+  }
+  
+  
+  // void getMessages() async {
+  //   final messages = await _firestore.collection("messages").get().then(
+  //         (chat) {
+  //       for (var msg in chat.docs) {
+  //        print(msg.data());
+  //         // print('${doc.id}=> ${doc.data()}');
+  //       }
+  //       // ...
+  //     },
+  //   );
+  // }
+
+  void messagesStream () async {
+    await for (var snapshot in _firestore.collection('messages').snapshots()) {
+      for (var msg in snapshot.docs) {
+        print(msg.data());
+      }
+    }
   }
 
   void getCurrentUser() async {
@@ -47,8 +67,9 @@ class _ChatScreenState extends State<ChatScreen> {
           IconButton(
               icon: Icon(Icons.close),
               onPressed: () {
-               _auth.signOut();
-               Navigator.pop(context);
+                messagesStream();
+               // _auth.signOut();
+               // Navigator.pop(context);
               }),
         ],
         title: Text('⚡️Chat'),
