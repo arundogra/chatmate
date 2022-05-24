@@ -1,3 +1,4 @@
+import 'package:chatmate/screens/chat_screen.dart';
 import 'package:chatmate/screens/login_screen.dart';
 import 'package:chatmate/screens/registration_screen.dart';
 import 'package:flutter/material.dart';
@@ -73,8 +74,44 @@ class _WelcomeScreenState extends State<WelcomeScreen> with SingleTickerProvider
             SizedBox(
               height: 48.0,
             ),
-            RoundedButton(title: 'login',colour: Colors.lightBlueAccent,onPressed: LoginScreen.id),
-            RoundedButton(title: 'Registration',colour: Colors.blueAccent, onPressed: RegistrationScreen.id),
+        Padding(
+          padding: EdgeInsets.symmetric(vertical: 16.0),
+          child: Material(
+            elevation: 5.0,
+            color: Colors.lightBlueAccent,
+            borderRadius: BorderRadius.circular(30.0),
+            child: MaterialButton(
+              onPressed:() {
+                Navigator.pushNamed(context, LoginScreen.id);
+              },
+              minWidth: 200.0,
+              height: 42.0,
+              child: Text(
+                'Login',
+                style: TextStyle(color: Colors.white),
+              ),
+            ),
+          ),
+        ),
+            Padding(
+              padding: EdgeInsets.symmetric(vertical: 16.0),
+              child: Material(
+                elevation: 5.0,
+                color: Colors.blue,
+                borderRadius: BorderRadius.circular(30.0),
+                child: MaterialButton(
+                  onPressed:() {
+                    Navigator.pushNamed(context, RegistrationScreen.id);
+                  },
+                  minWidth: 200.0,
+                  height: 42.0,
+                  child: Text(
+                    'Registration',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                ),
+              ),
+            ),
           ],
         ),
       ),
